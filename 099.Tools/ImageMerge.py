@@ -2,10 +2,10 @@ import cv2
 import numpy as np
 import os
 
-path='../1.Close/hw_close_100times/'
+path='../098.picture/'
 DIR = path #要統計的資料夾
 V_temp = None
-W_max = 4 #目前參數若要調整先把下方初始影像註解
+W_max = 3 #目前參數若要調整先把下方初始影像註解
 flag = True
 j = 0 
 i = 0
@@ -28,7 +28,7 @@ print(path_file_number)
 #********************************************************
 
 temp = cv2.imread(path + '0.jpg')
-for i in range(2, path_file_number+1):
+for i in range(2, path_file_number+1-2):
     next_image = cv2.imread(path + str(i-1) + '.jpg')
     if i-j*W_max > W_max :
         if flag:
