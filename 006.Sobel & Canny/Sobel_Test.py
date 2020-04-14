@@ -46,8 +46,16 @@ Sobel_HE_Y = cv2.convertScaleAbs(Sobel_HE_Y)
 cv2.imshow("Result_HE_Y", Sobel_HE_Y)
 
 dst = cv2.addWeighted(Sobel_HE_X,0.5,Sobel_HE_Y,0.5,0)
-ret,dst = cv2.threshold(dst,127,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)#二值化
+#ret,dst = cv2.threshold(dst,127,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)#二值化
 cv2.imshow("HE_final", dst)
+
+dst_normal = cv2.addWeighted(Sobel_X,0.5,Sobel_Y,0.5,0)
+#ret,dst_normal = cv2.threshold(dst_normal,127,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)#二值化
+cv2.imshow("normal_Final", dst_normal)
+cv2.imwrite('./Sobel_FurtherTest/final/' + 'dst_normal' +'.jpg',dst_normal)
+ret,dst_normal = cv2.threshold(dst_normal,127,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)#二值化
+cv2.imwrite('./Sobel_FurtherTest/final/' + 'dst_normal_threshold' +'.jpg',dst_normal)
+
 
 dst_open= cv2.morphologyEx(dst, cv2.MORPH_OPEN, kernel, iterations=1)
 # =============================================================================
