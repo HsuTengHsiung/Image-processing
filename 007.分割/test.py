@@ -65,7 +65,7 @@ def draw_approx_hull_polygon(img, cnts):
 
 
 def run():
-    image = cv2.imread('../098.picture/People.jpg')  # a black objects on white image is better
+    image = cv2.imread('../098.picture/Road_5.jpg')  # a black objects on white image is better
 
     # gray = cv2.cvtColor(image.copy(), cv2.COLOR_BGR2GRAY)
     # ret, thresh = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)

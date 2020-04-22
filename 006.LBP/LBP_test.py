@@ -10,9 +10,12 @@ import cv2
 np.set_printoptions(threshold=np.inf)
 # settings for LBP
 radius = 5  # LBP算法中范围半径的取值
-n_points = 8 * radius # 领域像素点数
+n_points = radius*radius-1
+# =============================================================================
+# n_points = 8 * radius # 领域像素点数
+# =============================================================================
 # 读取图像
-image1 =cv2.imread('../098.picture/WhyNot.jpg')
+image1 =cv2.imread('../098.picture/Road_5.jpg')
 cv2.imshow("image1",image1)
 
 plt.hist(image1.ravel(), 255, [0, 256])
@@ -25,7 +28,9 @@ ret,gray = cv2.threshold(gray,80,255,cv2.THRESH_BINARY)#二值化
 gray = cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
             cv2.THRESH_BINARY,11,2)
 cv2.imshow("gray",gray)
-cv2.imwrite("../098.picture/Road_2_gray.jpg",)
+# =============================================================================
+# cv2.imwrite("../098.picture/Road_2_gray.jpg",)
+# =============================================================================
 
 # 畫出直方圖
 plt.hist(gray.ravel(), 255, [0, 256])
