@@ -13,7 +13,7 @@ def image_show(image, nrows=1, ncols=1, cmap='gray'):
     ax.axis('off')
     return fig, ax
 
-image =cv2.imread('../098.picture/Road_2.jpg')
+image =cv2.imread('../098.picture/Road_8.jpg')
 # =============================================================================
 # cv2.imshow("gray",image)
 # 
@@ -36,5 +36,7 @@ np.unique(image_felzenszwalb).size
 
 image_felzenszwalb_colored = color.label2rgb(image_felzenszwalb, image, kind='avg')
 image_show(image_felzenszwalb_colored)
-cv2.imwrite("../098.picture/Road_2_image_felzenszwalb.jpg",image_felzenszwalb)
-cv2.imwrite("../098.picture/Road_2_image_felzenszwalb_colored.jpg",image_felzenszwalb_colored)
+# =============================================================================
+# cv2.imwrite("../098.picture/Road_8_image_felzenszwalb.jpg",image_felzenszwalb)
+# cv2.imwrite("../098.picture/Road_8_image_felzenszwalb_colored.jpg",image_felzenszwalb_colored)
+# =============================================================================

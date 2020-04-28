@@ -9,13 +9,13 @@ from PIL import Image
 import cv2
 np.set_printoptions(threshold=np.inf)
 # settings for LBP
-radius = 3  # LBP算法中范围半径的取值
+radius = 1  # LBP算法中范围半径的取值
 n_points = radius*8
 # =============================================================================
 # n_points = 8 * radius # 领域像素点数
 # =============================================================================
 # 读取图像
-image1 =cv2.imread('../098.picture/Road_6.jpg')
+image1 =cv2.imread('../098.picture/Road_3.jpg')
 cv2.imshow("image1",image1)
 
 plt.hist(image1.ravel(), 255, [0, 256])
@@ -39,13 +39,19 @@ plt.show()
 
 lbp = local_binary_pattern(image1, n_points, radius,method ='ror')
 #**************************************************************************************
-Block_high = 5
-for i in range (0,int(1600/Block_high)):
-    for j in range(0,int(1200/Block_high)):
+image_H=270
+image_W=163
+Block_high = 3
+plt.hist(lbp.ravel(), 255, [0, 256])
+plt.show()
+for i in range (0,int(image_H/Block_high)):
+    for j in range(0,int(image_W/Block_high)):
         x=i*Block_high
         y=j*Block_high
         lbp2 = lbp[y:y+Block_high,x:x+Block_high]
-        print(lbp2.shape)
+# =============================================================================
+#         print(lbp2.shape)
+# =============================================================================
         lbp2 = np.reshape(lbp2,(1,Block_high*Block_high))
         lbp2 = lbp2[0]
 # =============================================================================
@@ -53,10 +59,15 @@ for i in range (0,int(1600/Block_high)):
 # =============================================================================
         counts = np.bincount(list(map(float,lbp2)))
         #返回众数
-        print("i=",i,"j=",j,np.argmax(counts))
+# =============================================================================
+#         print("i=",i,"j=",j,np.argmax(counts))
+# =============================================================================
         lbp[y:y+Block_high,x:x+Block_high] = np.argmax(counts)
-        
-cv2.imwrite('../098.picture/Road_6_LBP_Block_test.jpg',lbp)
+# =============================================================================
+#     print("i=",i)
+# =============================================================================
+cv2.imshow("lbp",lbp)
+cv2.imwrite('../098.picture/Road_3_LBP_Block_test_3.jpg',lbp)
 
 #**************************************************************************************
 # =============================================================================
@@ -67,7 +78,6 @@ cv2.imwrite('../098.picture/Road_6_LBP_Block_test.jpg',lbp)
 # cv2.imshow("lbp_0",lbp)
 # lbp[lbp == 0] = 255
 # =============================================================================
-cv2.imshow("lbp",lbp)
 plt.hist(lbp.ravel(), 255, [0, 256])
 plt.show()
 plt.hist(lbp2.ravel(), 255, [0, 256])
