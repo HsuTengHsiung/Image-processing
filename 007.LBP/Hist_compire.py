@@ -11,8 +11,8 @@ import cv2
 radius = 1  # LBP算法中范围半径的取值
 n_points = radius*8
 
-img = cv2.imread("../098.picture/Road_10.jpg",0)
-img_compire = cv2.imread("../098.picture/Road_10_justroad.jpg",0)
+img = cv2.imread("../098.picture/Road/Road_10.jpg",0)
+img_compire = cv2.imread("../098.picture/Sample/Road_10_justroad.jpg",0)
 # 计算图img的直方图
 
 
@@ -28,6 +28,7 @@ H1 = cv2.normalize(H1, H1, 0, 1, cv2.NORM_MINMAX, -1) # 对图片进行归一化
 Block_high = 10*4
 w=4000
 h=6000
+h,w = image_lbp.shape
 for i in range (0,int(w/Block_high)):
     for j in range(0,int(h/Block_high)):
         x=i*Block_high
