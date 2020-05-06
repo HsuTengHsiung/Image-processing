@@ -73,3 +73,17 @@
 
         重疊
 ![image](https://github.com/HsuTengHsiung/Image-processing/blob/master/000.%E4%BD%9C%E6%A5%AD%E7%B4%80%E9%8C%84/HW3/Road16_%E7%9B%B4%E6%96%B9%E5%9C%96%E5%8C%B9%E9%85%8D_%E7%9B%B4%E6%96%B9%E5%9C%96%E5%8E%BB0%26255/Road_16_raw_LBP_Close_Final.jpg)
+
+---------------------------------------------
+
+##  Watershed方法測試
+1.以上面的抓取格當作marker輸入測試
+
+輸入
+![輸入](https://github.com/HsuTengHsiung/Image-processing/blob/master/000.%E4%BD%9C%E6%A5%AD%E7%B4%80%E9%8C%84/HW3/Block_test_forRoad5_2.jpg)
+
+mark
+![mark](https://github.com/HsuTengHsiung/Image-processing/blob/master/000.%E4%BD%9C%E6%A5%AD%E7%B4%80%E9%8C%84/HW3/markers.jpg)
+ 
+ 結果(遮罩)
+![結果](https://github.com/HsuTengHsiung/Image-processing/blob/master/000.%E4%BD%9C%E6%A5%AD%E7%B4%80%E9%8C%84/HW3/raw_image.png)
