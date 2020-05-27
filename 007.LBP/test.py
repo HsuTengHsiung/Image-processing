@@ -2,6 +2,9 @@ from skimage.transform import rotate
 from skimage.feature import local_binary_pattern
 from skimage import data
 from skimage.color import label2rgb
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
 
 # settings for LBP
 radius = 3

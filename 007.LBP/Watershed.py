@@ -16,6 +16,7 @@ cv2.imshow("sure_bg",sure_bg)
 
 # Finding sure foreground area
 dist_transform = cv2.distanceTransform(opening,cv2.DIST_L2,5)
+cv2.imshow("dist_transform",dist_transform)
 ret, sure_fg = cv2.threshold(dist_transform,0.7*dist_transform.max(),255,0)
 cv2.imshow("sure_fg",sure_fg)
 
