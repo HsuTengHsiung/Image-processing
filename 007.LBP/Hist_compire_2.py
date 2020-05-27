@@ -30,8 +30,8 @@ H1 = cv2.calcHist([img_compire_lbp.astype('uint8')], [0], None, [254],[1,254])
 H1 = cv2.normalize(H1, H1, 0, 1, cv2.NORM_MINMAX, -1) # 对图片进行归一化处理
  
 # 计算图img2的直方图
-Block_high = 10*10
-Block_high_2 = 10*5
+Block_high = 10*12
+Block_high_2 = 10*3
 h,w = img.shape
 print(h,w)
 once = [[]]
@@ -42,11 +42,11 @@ for i in range (0,int(w/Block_high)):
         y=j*Block_high
         H2 = cv2.calcHist([image_lbp[y:y+Block_high,x:x+Block_high].astype('uint8')], [0], None,[254],[1,254])
         H2 = cv2.normalize(H2, H2, 0, 1, cv2.NORM_MINMAX, -1)
-        similarity = cv2.compareHist(H1, H2, cv2.HISTCMP_CORREL)
+        similarity = cv2.compareHist(H1, H2,cv2.HISTCMP_BHATTACHARYYA)
 # =============================================================================
 #         print(similarity)
 # =============================================================================
-        if (1.0>similarity>0.75):
+        if (1.0>similarity>0.40):
             image_lbp[y:y+Block_high,x:x+Block_high]=255
             
             for k in range(0,int(Block_high/Block_high_2)):
@@ -55,11 +55,9 @@ for i in range (0,int(w/Block_high)):
                     y_2=l*Block_high_2
                     H3 = cv2.calcHist([image_lbp_copy[y+y_2:y+y_2+Block_high_2,x+x_2:x+x_2+Block_high_2].astype('uint8')], [0], None, [254],[1,254])
                     H3 = cv2.normalize(H3, H3, 0, 1, cv2.NORM_MINMAX, -1)
-                    similarity = cv2.compareHist(H1, H3, cv2.HISTCMP_CORREL)
-# =============================================================================
-#                     print(similarity)
-# =============================================================================
-                    if(1.0>similarity>0.80):
+                    similarity = cv2.compareHist(H1, H3, cv2.HISTCMP_BHATTACHARYYA)
+                    print(similarity)
+                    if(1.0>similarity>0.40):
                         image_lbp_copy[y+y_2:y+y_2+Block_high_2,x+x_2:x+x_2+Block_high_2]=255
                         raw_image[y+y_2:y+y_2+Block_high_2,x+x_2:x+x_2+Block_high_2]=125
                     else:
@@ -83,7 +81,7 @@ image_lbp_copy = image_lbp_copy.astype(int)
 img = img.astype(int)
 print(image_lbp_copy)
 print(img)
-raw_image = cv2.addWeighted(image_lbp_copy,0.5,img,0.5,0)
+raw_image_gray = cv2.addWeighted(image_lbp_copy,0.5,img,0.5,0)
 # =============================================================================
 # cv2.imshow("Final",Final)
 # =============================================================================
@@ -93,6 +91,8 @@ cv2.imwrite('../098.picture/BlockTest/Block_test_forRoad5_2.jpg',image_lbp_copy)
 cv2.imwrite('../098.picture/BlockTest/Block_test_Final_forRoad5.jpg',Final)
 cv2.imwrite('../098.picture/BlockTest/Block_test_Final2_forRoad5.jpg',Final_2)
 cv2.imwrite('../098.picture/BlockTest/Block_test_Final2_forRoad5_raw_image.jpg',raw_image)
+cv2.imwrite('../098.picture/BlockTest/Block_test_Final2_forRoad5_raw_image_gray.jpg',raw_image_gray)
+
 # =============================================================================
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()
